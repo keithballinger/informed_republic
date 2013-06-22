@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
     <title>Informed Replublic</title>
@@ -10,6 +10,12 @@
 
     <!-- Le styles -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+    <script src="./app.js"></script>
+    <script src="./controllers.js"></script>
+
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -25,12 +31,6 @@
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
@@ -61,21 +61,13 @@
     <div class="container">
 
       <div class="row">
-        <div class="span4">
+        <div class="span4" ng-controller="IssuesListCtrl">
           <h3>Your Issues</h3>
           <table class="table table-condensed">
             <tbody>
-              <tr>
-                <td><i class="icon-arrow-down"></i></td>
-                <td>Abortion</td>
-              </tr>
-              <tr>
-                <td><i class="icon-arrow-down"></i></td>
-                <td>Military Spending</td>
-              </tr>
-              <tr>
-                <td><i class="icon-arrow-up"></i></td>
-                <td>Privacy</td>
+              <tr ng-repeat="issue in issues">
+                <td><i class="{{issue.Hotness}}"></i></td>
+                <td>{{issue.Name}}</td>
               </tr>
             </tbody>
           </table>
@@ -84,68 +76,38 @@
           <div class="row">
             <div class="span8">
               <h3>Alerts</h3>
-              <table class="table table-hover">
+              <table class="table table-hover" ng-controller="AlertsListCtrl">
                 <tbody>
-                  <tr>
-                    <td><i class="icon-thumbs-down"></i></td>
-                    <td>Some recent bad news on military spending here</td>
-                    <td><button class="btn btn-warning">Learn more...</button></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-thumbs-down"></i></td>
-                    <td>Senator Awesomesauce poll results: up by 5%</td>
-                    <td><button class="btn btn-info">Learn more...</button></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-thumbs-down"></i></td>
-                    <td>Some recent news on military spending here</td>
-                    <td><button class="btn btn-danger">Learn more...</button></td>
+                  <tr ng-repeat="alert in alerts">
+                    <td><img class="img-polaroid" width=100 src="{{alert.UrlImage}}"> {{alert.Text}}</td>
+                    <td><a href="{{alert.Link}}" class="btn btn-warning">Learn More...</a></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div> <!-- end row -->
           <div class="row">
-            <div class="span9">
+            <div class="span9" ng-controller="ActionsListCtrl">
               <div class="caption">
                 <h3>Take Action</h3>
-                <div style="background-color: #cccccc;">
-                  <img src="holder.js/100x100">Sign the petition to pardon Edward Snowden
-                  <button class="btn">Sign here</button>
+                <div style="background-color: #cccccc;" ng-repeat="action in actions">
+                  <img class="img-polaroid" width=200 src="{{action.UrlImage}}">
+                  {{action.Text}}
+                  <a href="{{alert.Link}}" class="btn btn-inverse">Learn More...</a>
                 <div>
               </div>
             </div>
           </div> <!-- end row -->
-          <div class="row-fluid">
+          <div class="row-fluid" ng-controller="PlayersListCtrl">
             <h3>Players</h3>
             <ul class="thumbnails">
-              <li class="span3">
+              <li class="span3" ng-repeat="player in players">
                 <div class="thumbnail">
-                  <img data-src="holder.js/200x100" alt="">
+                  <img src="{{player.UrlImage}}" alt="">
                   <div class="caption">
-                    <h4>Barack Obama</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a href="#" class="btn">Learn More...</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <img data-src="holder.js/200x100" alt="">
-                  <div class="caption">
-                    <h4>Barack Obama</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a href="#" class="btn">Learn More...</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <img data-src="holder.js/200x100" alt="">
-                  <div class="caption">
-                    <h4>Barack Obama</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a href="#" class="btn">Learn More...</a></p>
+                    <h4>{{player.Name}}</h4>
+                    <p>{{player.Text}}</p>
+                    <p><a href="{{player.Link}}" class="btn">Learn More...</a></p>
                   </div>
                 </div>
               </li>
@@ -153,7 +115,6 @@
           </div>
         </div>
       </div>
-
     </div> <!-- /container -->
 
     <!-- Le javascript
