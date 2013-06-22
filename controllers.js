@@ -2,16 +2,16 @@ function IssuesListCtrl($scope, $http) {
   $http({method: 'GET', url: 'http://hack2013.azurewebsites.net/api/users/GetIssuesForUser?user=Bob', headers: {'Accept': 'application/json'}}).
       success(function(data, status) {
         $.each(data, function() {
-          console.log(this);
-          if (this.Hotness > 50) {
-            this.Hotness = "icon-arrow-up";
-          } else if (this.Hotness < 50){
-            this.Hotness = "icon-arrow-down";
+          if (this.Hotness > 70) {
+            this.ProgressStyle = "progress-danger";
+          } else if (this.Hotness > 30){
+            this.ProgressStyle = "progress-warning";
           } else {
-            this.Hotness = "icon-minus";
+            this.ProgressStyle = "progress-success";
           }
         });
         $scope.issues = data;
+        console.log($scope.issues);
       }).
       error(function(data, status) {
         console.log("Request failed");
@@ -34,16 +34,6 @@ function IssuesListCtrl($scope, $http) {
 function AlertsListCtrl($scope, $http) {
   $http({method: 'GET', url: ' http://hack2013.azurewebsites.net/api/users/GetAlerts?user=Bob', headers: {'Accept': 'application/json'}}).
       success(function(data, status) {
-        // $.each(data, function() {
-        //   console.log(this);
-        //   if (this.Hotness > 50) {
-        //     this.Hotness = "icon-arrow-up";
-        //   } else if (this.Hotness < 50){
-        //     this.Hotness = "icon-arrow-down";
-        //   } else {
-        //     this.Hotness = "icon-minus";
-        //   }
-        // });
         $scope.alerts = data;
       }).
       error(function(data, status) {
@@ -58,9 +48,16 @@ function AlertsListCtrl($scope, $http) {
 // "Text":"Sign petition to save Snowden"
 // }]
 function ActionsListCtrl($scope, $http) {
+
   $http({method: 'GET', url: 'http://hack2013.azurewebsites.net/api/users/GetAction?user=Bob', headers: {'Accept': 'application/json'}}).
       success(function(data, status) {
         $scope.actions = data;
+        $scope.action = data[0];
+        $scope.currentPage = 0;
+        $scope.pageSize = 1;
+        $scope.numberOfPages=function(){
+          return Math.ceil($scope.actions.length/$scope.pageSize);                
+        }
       }).
       error(function(data, status) {
         console.log("Request failed");

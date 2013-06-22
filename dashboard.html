@@ -10,11 +10,68 @@
 
     <!-- Le styles -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
     <script src="./app.js"></script>
     <script src="./controllers.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://www.chartjs.org/assets/Chart.js"></script>
+    
+    <script>
+      $(document).ready(function() {
+        var data =
+        [
+          {
+            value:  2464,
+            color:  '#F38630'
+          },
+          {
+            value:  2245,
+            color:  '#E0E4CC'
+          },
+          {
+            value:  1726,
+            color:  '#69D2E7'
+          },
+          {
+            value:  453,
+            color:  '#69D2E7'
+          },
+          {
+            value:  330,
+            color:  '#89F2E9'
+          },
+          {
+            value:  205,
+            color:  '#34D2F7'
+          }
+        ]
+        
+        var options =
+        {
+          segmentShowStroke   : true,
+          segmentStrokeColor    : '#fff',
+          segmentStrokeWidth    : 2, // pixels
+          percentageInnerCutout : 50,
+          
+          animation       : true,
+          animationSteps      : 60,
+          animationEasing     : /*'easeOutBack'*/'easeOutQuart',
+          animationRotate     : true,
+          animateScale      : false,
+          onAnimationComplete   : null
+        }
+        
+        
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myNewChart = new Chart(ctx);
+        new Chart(ctx).Doughnut(data, options);
+      });
+      
+      </script>
+
 
     <style type="text/css">
       body {
@@ -23,21 +80,56 @@
         background-color: #f5f5f5;
       }
 
+      #myDoughnutChart
+      {
+        position: relative;
+        top: 60px;
+        margin-top: 0px;
+      }
+
+      .legend
+      {
+        position: relative;
+        top: -98px;
+        left: 135px;
+      }
+
+      .circle
+      {
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        margin-bottom: 0px;
+        margin-left: 20px;
+      }
+
+      ol, ul {
+        list-style: none;
+      }
+
+      #key_circle_1{background-color: #F38630;}
+      #key_circle_2{background-color: #E0E4CC;}
+      #key_circle_3{background-color: #69D2E7;}
+      #key_circle_4{background-color: #69D2E7;}
+      #key_circle_5{background-color: #89F2E9;}
+      #key_circle_6{background-color: #34D2F7;}
+
+      .key_text
+      {
+        position: relative;
+        top: -15px;
+        margin-top: -90px;
+        font-family: Helvetica;
+        font-size: 12px;
+        margin-left: 40px;
+      }
     </style>
-    <link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
   </head>
-
   <body>
-    <div class="alert">
+<!--     <div class="alert">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Warning!</strong> Congress votes today on a bill.
-    </div>
+    </div> -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -47,7 +139,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Informed Republic</a>
-            <div class="nav-collapse">
+            <div class="nav-collapse pull-right">
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -59,62 +151,106 @@
       </div>
     </div>
     <div class="container">
-
-      <div class="row">
-        <div class="span4" ng-controller="IssuesListCtrl">
-          <h3>Your Issues</h3>
-          <table class="table table-condensed">
-            <tbody>
-              <tr ng-repeat="issue in issues">
-                <td><i class="{{issue.Hotness}}"></i></td>
-                <td>{{issue.Name}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="span8">
-          <div class="row">
-            <div class="span8">
-              <h3>Alerts</h3>
-              <table class="table table-hover" ng-controller="AlertsListCtrl">
-                <tbody>
-                  <tr ng-repeat="alert in alerts">
-                    <td><img class="img-polaroid" width=100 src="{{alert.UrlImage}}"> {{alert.Text}}</td>
-                    <td><a href="{{alert.Link}}" class="btn btn-warning">Learn More...</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div> <!-- end row -->
-          <div class="row">
-            <div class="span9" ng-controller="ActionsListCtrl">
-              <div class="caption">
-                <h3>Take Action</h3>
-                <div style="background-color: #cccccc;" ng-repeat="action in actions">
-                  <img class="img-polaroid" width=200 src="{{action.UrlImage}}">
-                  {{action.Text}}
-                  <a href="{{alert.Link}}" class="btn btn-inverse">Learn More...</a>
-                <div>
+        <div class="row">
+          <div class="span4">
+            <div class="row">
+              <div class="span4">
+                <h4>Affiliation:</h4>
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td>LIBERAL DEMOCRAT</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- END COLUMN ROW -->
+            <div class="row">
+              <div class="span4" ng-controller="IssuesListCtrl">
+                <h4>Your Issues:</h4>
+                <table class="table table-condensed">
+                  <tbody>
+                    <tr ng-repeat="issue in issues">
+                      <td>
+                        {{issue.Name}}
+                        <br>
+                        <div class="progress {{issue.ProgressStyle}}">
+                          <div class="bar" style="width: {{issue.Hotness}}%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- END COLUMN ROW -->
+            <div class="row">
+              <div class="wrapper span4">
+                <h4>Your Tax Spending:</h4>
+                <canvas id="myDoughnutChart" width="150" height="150"></canvas>
+                <div class="legend">
+                  <ul>
+                    <li><div id="key_circle_1" class="circle"></div><span class="key_text">National Defense</span></li>
+                    <li><div id="key_circle_2" class="circle"></div><span class="key_text">Healthcare</span></li>
+                    <li><div id="key_circle_3" class="circle"></div><span class="key_text">Family Security</span></li>
+                    <li><div id="key_circle_4" class="circle"></div><span class="key_text">Education</span></li>
+                    <li><div id="key_circle_5" class="circle"></div><span class="key_text">Veteran Benefits</span></li>
+                    <li><div id="key_circle_6" class="circle"></div><span class="key_text">Energy &amp; Environment</span></li>
+                  <ul>
+                </div>
               </div>
             </div>
-          </div> <!-- end row -->
-          <div class="row-fluid" ng-controller="PlayersListCtrl">
-            <h3>Players</h3>
-            <ul class="thumbnails">
-              <li class="span3" ng-repeat="player in players">
-                <div class="thumbnail">
-                  <img src="{{player.UrlImage}}" alt="">
-                  <div class="caption">
-                    <h4>{{player.Name}}</h4>
-                    <p>{{player.Text}}</p>
-                    <p><a href="{{player.Link}}" class="btn">Learn More...</a></p>
-                  </div>
+          </div> <!-- END SPAN 4 -->
+          <div class="span8">
+            <div class="row">
+              <div class="span9" ng-controller="ActionsListCtrl">
+                <h4>Take Action:</h4>
+                <p style = "border:1px solid gray;">
+                  <a href="{{action.Link}}" >
+                    <img class="img-polaroid" width=75 src="{{action.UrlImage}}">
+                    {{action.Text}}
+                  </a>
+                </p>
+                <div class="pull-right">
+                  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                      Previous
+                  </button>
+                  {{currentPage+1}}/{{numberOfPages()}}
+                  <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                      Next
+                  </button>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+              </div>
+            </div> <!-- END COLUMN ROW -->
+            <div class="row">
+              <div class="span8">
+                <h4>Issue tracker:</h4>
+                <table class="table table-hover" ng-controller="AlertsListCtrl">
+                  <tbody>
+                    <tr ng-repeat="alert in alerts">
+                      <td><img class="img-rounded" width=100 src="{{alert.UrlImage}}"> {{alert.Text}}</td>
+                      <!-- <td><a href="{{alert.Link}}" class="btn btn-warning">Learn More...</a></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> <!-- END COLUMN ROW -->
+            <div class="row-fluid" ng-controller="PlayersListCtrl">
+              <h4>Players</h4>
+              <ul class="thumbnails">
+                <li class="span3" ng-repeat="player in players">
+                  <div class="thumbnail">
+                    <img class="img-rounded" width=200 height=200 src="{{player.UrlImage}}" alt="">
+                    <div class="caption">
+                      <h4>{{player.Name}}</h4>
+                      <p>{{player.Text}}</p>
+                      <p><a href="{{player.Link}}" class="btn">Learn More...</a></p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div> <!-- END COLUMN ROW -->
+          </div> <!-- END SPAN 8 -->
+        </div> <!-- END MAJOR ROW -->
     </div> <!-- /container -->
 
     <!-- Le javascript
