@@ -72,7 +72,7 @@ namespace BackendServer.Controllers
         }
 
         [HttpGet]
-        Alert[] GetAlerts(string user)
+        public Alert[] GetAlerts(string user)
         {
             return new Alert[]
             {
@@ -92,7 +92,7 @@ namespace BackendServer.Controllers
         }
         
         [HttpGet]
-        Alert[] GetAction(string user)
+        public Alert[] GetAction(string user)
         {
             return new Alert[]
             {
