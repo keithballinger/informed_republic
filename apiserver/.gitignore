@@ -1,0 +1,11 @@
+bin
+obj
+csx
+
+*.user
+*.suo
+*.cscfg
+
+*.pubxml
+
+/packages
