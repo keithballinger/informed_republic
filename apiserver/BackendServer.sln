@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendServer", "BackendServer\BackendServer.csproj", "{3BC178FF-AFE1-4F0F-90C1-206F6AD7CD15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverApp", "DriverApp\DriverApp.csproj", "{1EAE3515-B32C-482A-9301-1D299F0EA136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{3BC178FF-AFE1-4F0F-90C1-206F6AD7CD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BC178FF-AFE1-4F0F-90C1-206F6AD7CD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BC178FF-AFE1-4F0F-90C1-206F6AD7CD15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EAE3515-B32C-482A-9301-1D299F0EA136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EAE3515-B32C-482A-9301-1D299F0EA136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EAE3515-B32C-482A-9301-1D299F0EA136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EAE3515-B32C-482A-9301-1D299F0EA136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
