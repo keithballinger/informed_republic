@@ -172,122 +172,12 @@
     </style>
   </head>
   <body>
-<!--     <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Warning!</strong> Congress votes today on a bill.
-    </div> -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><img style="max-height: 40px;" src="./assets/img/logoHeader.png" /></a>
-            <div class="nav-collapse pull-right">
-              <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </div><!--/.nav-collapse -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container dashboard-unit">
-        <div class="row">
-          <div class="span4 capsule" >
-            <div class="row capsule">
-              <div class="span3">
-                <h4>Affiliation:</h4>
-                <table class="table table-hover">
-                  <tbody>
-                    <tr>
-                      <td>LIBERTARIAN</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> <!-- END COLUMN ROW -->
-            <div class="row capsule">
-              <div class="span4" ng-controller="IssuesListCtrl">
-                <h4>Your Issues:</h4>
-                <table class="table table-condensed">
-                  <tbody>
-                    <tr ng-repeat="issue in issues">
-                      <td>
-                        {{issue.Name}}
-                        <br>
-                        <div class="progress {{issue.ProgressStyle}}">
-                          <div class="bar" style="width: {{issue.Hotness}}%"></div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> <!-- END COLUMN ROW -->
-            <div class="row capsule">
-              <div class="wrapper span4">
-                <h4>Your Tax Spending:</h4>
-                <canvas id="myDoughnutChart" width="150" height="150"></canvas>
-                <div class="legend">
-                  <ul>
-                    <li><div id="key_circle_1" class="circle"></div><span class="key_text">National Defense</span></li>
-                    <li><div id="key_circle_2" class="circle"></div><span class="key_text">Healthcare</span></li>
-                    <li><div id="key_circle_3" class="circle"></div><span class="key_text">Family Security</span></li>
-                    <li><div id="key_circle_4" class="circle"></div><span class="key_text">Education</span></li>
-                    <li><div id="key_circle_5" class="circle"></div><span class="key_text">Veteran Benefits</span></li>
-                    <li><div id="key_circle_6" class="circle"></div><span class="key_text">Energy &amp; Environment</span></li>
-                  <ul>
-                </div>
-              </div>
-            </div>
-          </div> <!-- END SPAN 4 -->
-          <div class="span8">
-            <div class="row">
-              <div class="span8">
-                <h4>Issue tracker:</h4>
-                <table class="table table-hover" ng-controller="AlertsListCtrl">
-                  <tbody>
-                    <tr ng-repeat="alert in alerts">
-                      <td><a href="{{alert.Link}}" target=_blank><img style="max-height: 40px;" src="{{alert.UrlImage}}"></a> {{alert.Text}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> <!-- END COLUMN ROW -->
-            <div class="row">
-              <div class="span8" ng-controller="ActionsListCtrl">
-                <h4>Take Action:</h4>
-                <p class="action" ng-repeat="action in actions">
-                  <a href="{{action.Link}}" target=_blank>
-                    <img style="max-height: 40px;" src="{{action.UrlImage}}">
-                    {{action.Text}}
-                  </a>
-                </p>
-              </div>
-            </div> <!-- END COLUMN ROW -->
-            <div class="row-fluid" ng-controller="PlayersListCtrl">
-              <h4>Players</h4>
-              <ul class="thumbnails">
-                <li class="span3" ng-repeat="player in players">
-                  <div class="thumbnail">
-                    <a href="{{player.Link}}" target=_blank>
-                      <img class="img-rounded" width=200 height=200 src="{{player.UrlImage}}" alt="">
-                      <div class="caption">
-                        <h4>{{player.Name}}</h4>
-                        <p class="muted">{{player.Text}}</p>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div> <!-- END COLUMN ROW -->
-          </div> <!-- END SPAN 8 -->
-        </div> <!-- END MAJOR ROW -->
+    <div class="container">
+
+      <a href="./dashboard.html">
+        <img src="./assets/img/splash.png">
+      </a>
+
     </div> <!-- /container -->
 
     <!-- Le javascript
@@ -308,3 +198,7 @@
 
   </body>
 </html>
+
+    
+
+

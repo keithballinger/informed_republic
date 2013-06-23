@@ -1,64 +1,181 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Informed Replublic</title>
+    <title>Informed Republic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+    <script src="./app.js"></script>
+    <script src="./controllers.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://www.chartjs.org/assets/Chart.js"></script>
+    
+    <script>
+      $(document).ready(function() {
+        var data =
+        [
+          {
+            value:  2464,
+            color:  '#F38630'
+          },
+          {
+            value:  2245,
+            color:  '#E0E4CC'
+          },
+          {
+            value:  1726,
+            color:  '#69D2E7'
+          },
+          {
+            value:  453,
+            color:  '#69D2E7'
+          },
+          {
+            value:  330,
+            color:  '#89F2E9'
+          },
+          {
+            value:  205,
+            color:  '#34D2F7'
+          }
+        ]
+        
+        var options =
+        {
+          segmentShowStroke   : true,
+          segmentStrokeColor    : '#fff',
+          segmentStrokeWidth    : 2, // pixels
+          percentageInnerCutout : 50,
+          
+          animation       : true,
+          animationSteps      : 60,
+          animationEasing     : /*'easeOutBack'*/'easeOutQuart',
+          animationRotate     : true,
+          animateScale      : false,
+          onAnimationComplete   : null
+        }
+        
+        
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myNewChart = new Chart(ctx);
+        new Chart(ctx).Doughnut(data, options);
+      });
+      
+      </script>
+
+
     <style type="text/css">
+
       body {
+        font-family: 'Open Sans' !important;
+        font-style:  normal;
+        font-weight: 400;
         padding-top: 60px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
+        background-color: #eefcff;
       }
 
-      .form-signin {
-        max-width: 300px;
-        padding: 19px 29px 29px;
-        margin: 0 auto 20px;
-        background-color: #fff;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
-        margin-bottom: 10px;
-      }
-      .form-signin input[type="text"],
-      .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
+     h4 {
+        font-family: 'Open Sans' !important;
+        font-style:  normal;
+        font-weight: 300;
+        color:#5e5e5e;
       }
 
+      #myDoughnutChart
+      {
+        position: relative;
+        top: 60px;
+        margin-top: 0px;
+      }
+
+      .legend
+      {
+        position: relative;
+        top: -98px;
+        left: 135px;
+      }
+
+      .circle
+      {
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        margin-bottom: 0px;
+        margin-left: 20px;
+      }
+
+      ol, ul {
+        list-style: none;
+      }
+
+      #key_circle_1{background-color: #F38630;}
+      #key_circle_2{background-color: #E0E4CC;}
+      #key_circle_3{background-color: #69D2E7;}
+      #key_circle_4{background-color: #69D2E7;}
+      #key_circle_5{background-color: #89F2E9;}
+      #key_circle_6{background-color: #34D2F7;}
+
+      .key_text
+      {
+        position: relative;
+        top: -15px;
+        margin-top: -90px;
+        font-family: Helvetica;
+        font-size: 12px;
+        margin-left: 40px;
+      }
+
+      .dashboard-unit {
+        padding: 60px;
+        margin-bottom: 30px;
+        line-height: 30px;
+        color: inherit;
+        background-color: #FFFFFF;
+        -webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
+      }
+
+      .action {
+        color: inherit;
+        background-color: #E6FFD1;
+        -webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
+      }
+
+      .capsule {
+        color: inherit;
+        background-color: #fff3de;
+        -webkit-border-radius: 6px;
+           -moz-border-radius: 6px;
+                border-radius: 6px;
+      }
+
+      .navbar-inner {
+        background-color: #fff3de; /* background color will be black for all browsers */
+        background-image: none;
+        background-repeat: no-repeat;
+        filter: none;
+      }
     </style>
-    <link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
-
   <body>
+<!--     <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Warning!</strong> Congress votes today on a bill.
+    </div> -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -67,8 +184,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Informed Republic</a>
-            <div class="nav-collapse">
+          <a class="brand" href="#"><img style="max-height: 40px;" src="./assets/img/logoHeader.png" /></a>
+            <div class="nav-collapse pull-right">
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -98,6 +215,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
+    <script src="./assets/js/holder.js"></script>
     <script>
       // $( 'body' ).on( 'click', '#fooBtnGroup .btn', function(event) {
       //     event.stopPropagation(); // prevent default bootstrap behavior
@@ -110,3 +228,7 @@
 
   </body>
 </html>
+
+    
+
+
